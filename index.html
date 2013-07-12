@@ -80,7 +80,7 @@
           success: function(data) {
               stationInfo = data.response.station[0];
               // 最寄り駅の表示
-              document.getElementById("station").innerHTML = "最寄り駅：" + stationInfo.name + "駅";
+              document.getElementById("station").innerHTML = "【最寄り駅】 " + stationInfo.name + "駅";
               var start = new google.maps.LatLng(lat, lng);
               var end = new google.maps.LatLng(stationInfo.y, stationInfo.x);
 
@@ -111,9 +111,9 @@
                 var dist= response.routes[0].legs[0].distance.value;
                 var duration = response.routes[0].legs[0].duration.text;
                 // 駅までの距離の表示
-                document.getElementById("dist").innerHTML = '約' + dist + 'm  ';
+                document.getElementById("station").innerHTML += '（約' + dist + 'm）';
                 // 駅までの所要時間の表示
-                document.getElementById("dist").innerHTML += '所要時間:約' + duration;
+                document.getElementById("dist").innerHTML = '【所要時間】 約' + duration;
             } else {
                 alert("ルート検索ができませんでした");
             }
