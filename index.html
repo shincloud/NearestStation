@@ -72,6 +72,7 @@
           timeout:10000,
           success: function(data) {
               stationInfo = data.response.station[0];
+              // 最寄り駅の表示
               document.getElementById("station").innerHTML = "最寄り駅：" + stationInfo.name + "駅";
               var start = new google.maps.LatLng(lat, lng);
               var end = new google.maps.LatLng(stationInfo.y, stationInfo.x);
@@ -87,22 +88,24 @@
 
     // 現在地から最寄り駅までのルート、距離、所要時間を表示
     function route(start, end) {
+        // ルート検索のパラメータ設定
         var request = {
-          origin:start,
-          destination:end,
-          travelMode:google.maps.DirectionsTravelMode.WALKING
+          origin:start,       // 現在地
+          destination:end,    // 最寄り駅
+          travelMode:google.maps.DirectionsTravelMode.WALKING    // 徒歩
         };
 
+        // 現在地から最寄り駅までのルートを検索
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
-
-        // 現在地から最寄り駅までのルートを検索
         directionsService.route(request, function(response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
                 var dist= response.routes[0].legs[0].distance.value;
                 var duration = response.routes[0].legs[0].duration.text;
+                // 駅までの距離の表示
                 document.getElementById("dist").innerHTML = '約' + dist + 'm  ';
+                // 駅までの所要時間の表示
                 document.getElementById("dist").innerHTML += '所要時間:約' + duration;
             } else {
                 alert("ルート検索ができませんでした");
