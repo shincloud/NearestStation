@@ -46,6 +46,13 @@
             case 3: err_msg = "タイムアウトしました"; break;
         }
         alert(err_msg);
+
+        var lat = 35.607002;
+        var lng = 139.749107;
+        // 現在地のマップ表示
+	draw(lat, lng);
+        // 最寄り駅情報の表示
+        near(lat, lng);
     }
 
     // 現在地のマップ表示
