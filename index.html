@@ -25,9 +25,6 @@
         maximumAge: 0              // キャッシュ有効期間（ミリ秒）
     };
 
-    //ユーザーの現在の位置情報を取得
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, position_options);
-
     function successCallback(position) {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
@@ -48,6 +45,9 @@
         }
         alert(err_msg);
     }
+
+    //ユーザーの現在の位置情報を取得
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, position_options);
 
     // 現在地のマップ表示
     function draw(lat, lng) {
